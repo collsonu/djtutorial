@@ -7,11 +7,10 @@ def index(request):
 
 
 def analyze(request):
-    djtext = request.GET.get('text', 'default')
-    removeunc = request.GET.get('analyse', 'off')
-    fullcaps = request.GET.get('fullcaps', 'off')
-    print(djtext)
-    print(removeunc)
+    djtext = request.POST.get('text', 'default')
+    removeunc = request.POST.get('analyse', 'off')
+    fullcaps = request.POST.get('fullcaps', 'off')
+    counttt = request.POST.get('counttt' , 'off')
     if removeunc == 'on':
 
         punctuation = '''!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~'''
@@ -24,7 +23,7 @@ def analyze(request):
 
         return render(request, 'analyze.html', params)
 
-    elif(fullcaps == "on"):
+    if(fullcaps == "on"):
         analyzed = ""
         for i in djtext:
             analyzed = analyzed + i.upper()
@@ -32,7 +31,7 @@ def analyze(request):
 
         return render(request, 'analyze.html', params)
 
-    elif(counttt == "on"):
+    if(counttt == "on"):
         analyzed = 0
         for i in djtext:
             analyzed += 1
